@@ -6,13 +6,21 @@
 </p>
 
 <p>
+  <strong>Mp3:</strong>
+  <audio controls>
+    <source src="<%= url_for @music.mp3 %>" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+</p>
+
+<p>
   <strong>Link:</strong>
   <%= @music.link %>
 </p>
 
 <p>
   <strong>Thumbnail:</strong>
-  <%= @music.thumbnail %>
+  <%= image_tag @music.thumbnail, width: 400 %>
 </p>
 
 <p>

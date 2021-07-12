@@ -64,6 +64,6 @@ class MusicsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def music_params
-      params.require(:music).permit(:title, :link, :thumbnail, :duration, :artist)
+      params.require(:music).permit(:title, :link, :start, :end, :thumbnail, :duration, :artist)
     end
 end
