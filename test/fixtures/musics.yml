@@ -3,7 +3,13 @@
 one:
   title: MyString
   link: MyString
+  thumbnail: MyString
+  duration: 1
+  artist: MyString
 
 two:
   title: MyString
   link: MyString
+  thumbnail: MyString
+  duration: 1
+  artist: MyString

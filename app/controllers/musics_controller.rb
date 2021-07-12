@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class MusicsController < ApplicationController
-  before_action :set_music, only: %i[show edit update destroy]
+  before_action :set_music, only: %i[ show edit update destroy ]
 
   # GET /musics or /musics.json
   def index
@@ -59,14 +57,13 @@ class MusicsController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_music
+      @music = Music.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_music
-    @music = Music.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def music_params
-    params.require(:music).permit(:title, :link)
-  end
+    # Only allow a list of trusted parameters through.
+    def music_params
+      params.require(:music).permit(:title, :link, :thumbnail, :duration, :artist)
+    end
 end

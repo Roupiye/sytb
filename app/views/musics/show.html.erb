@@ -10,5 +10,20 @@
   <%= @music.link %>
 </p>
 
+<p>
+  <strong>Thumbnail:</strong>
+  <%= @music.thumbnail %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @music.duration %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @music.artist %>
+</p>
+
 <%= link_to 'Edit', edit_music_path(@music) %> |
 <%= link_to 'Back', musics_path %>

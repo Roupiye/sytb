@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "application_system_test_case"
 
 class MusicsTest < ApplicationSystemTestCase
@@ -16,7 +14,10 @@ class MusicsTest < ApplicationSystemTestCase
     visit musics_url
     click_on "New Music"
 
+    fill_in "Artist", with: @music.artist
+    fill_in "Duration", with: @music.duration
     fill_in "Link", with: @music.link
+    fill_in "Thumbnail", with: @music.thumbnail
     fill_in "Title", with: @music.title
     click_on "Create Music"
 
@@ -28,7 +29,10 @@ class MusicsTest < ApplicationSystemTestCase
     visit musics_url
     click_on "Edit", match: :first
 
+    fill_in "Artist", with: @music.artist
+    fill_in "Duration", with: @music.duration
     fill_in "Link", with: @music.link
+    fill_in "Thumbnail", with: @music.thumbnail
     fill_in "Title", with: @music.title
     click_on "Update Music"
 

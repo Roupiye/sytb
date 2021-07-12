@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "test_helper"
 
 class MusicsControllerTest < ActionDispatch::IntegrationTest
@@ -18,8 +16,8 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create music" do
-    assert_difference("Music.count") do
-      post musics_url, params: {music: {link: @music.link, title: @music.title}}
+    assert_difference('Music.count') do
+      post musics_url, params: { music: { artist: @music.artist, duration: @music.duration, link: @music.link, thumbnail: @music.thumbnail, title: @music.title } }
     end
 
     assert_redirected_to music_url(Music.last)
@@ -36,12 +34,12 @@ class MusicsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update music" do
-    patch music_url(@music), params: {music: {link: @music.link, title: @music.title}}
+    patch music_url(@music), params: { music: { artist: @music.artist, duration: @music.duration, link: @music.link, thumbnail: @music.thumbnail, title: @music.title } }
     assert_redirected_to music_url(@music)
   end
 
   test "should destroy music" do
-    assert_difference("Music.count", -1) do
+    assert_difference('Music.count', -1) do
       delete music_url(@music)
     end
 
