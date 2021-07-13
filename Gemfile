@@ -24,6 +24,7 @@ gem "octicons_helper"
 gem "youtube-dl.rb", github: "Realvestor/youtube-dl.rb", branch: "fix/update-binary"
 gem 'yt'
 gem 'simple_form'
+gem 'hotwire-rails'
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

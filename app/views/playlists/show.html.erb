@@ -1,21 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @playlist.thumbnail, width: 400 %>
-
-<div class="w-40 h-40"
-  style="background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.1), rgba(117, 19, 93, 0.73)), url(<%= url_for @playlist.thumbnail %>); background-size: cover;">
-  a
+<div class="flex items-center text-center justify-center text-2xl mt-4 mb-4">
+  <%= @playlist.title %>
 </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @playlist.title %>
-</p>
+<% @playlist.musics.each do |music| %>
+  <%= render Musics::Card::Component.new(music: music) %>
+<% end %>
 
-<p>
-  <strong>Code:</strong>
-  <%= @playlist.code %>
-</p>
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>

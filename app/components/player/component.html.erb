@@ -1,0 +1,15 @@
+<div id="player" data-turbo-permanent class="bg-beaver-900 border-black border-t fixed py-2 w-full flex bottom-0">
+  <div class="container max-w-4xl mx-auto px-4">
+    <div class="flex m-full items-center justify-start flex-col">
+      <div>
+        <%= session[:player].title %>
+      </div>
+      <div>
+        <audio id="<%= session[:player].id %>" controls>
+          <source src="<%= url_for session[:player].mp3 %>" type="audio/mp3">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+  <div>
+</div>

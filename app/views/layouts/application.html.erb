@@ -11,8 +11,9 @@
   </head>
 
   <body class="bg-beaver-900 text-white">
-    <div class="container max-w-4xl mx-auto mb-8 px-4">
+    <div class="container max-w-4xl mx-auto mb-20 px-4">
       <%= yield %>
     </div>
+    <%= render Player::Component.new %>
   </body>
 </html>
