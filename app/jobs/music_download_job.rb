@@ -18,7 +18,7 @@ class MusicDownloadJob < ApplicationJob
     @music.save
 
     File.delete("#{@music.id}_thumb") if File.exist?("#{@music.id}_thumb")
-    File.delete("_#{@music.id}.mp3") if File.exist?("_#{@music.id}_thumb")
+    File.delete("_#{@music.id}.mp3") if File.exist?("_#{@music.id}.mp3")
     File.delete("#{@music.id}.mp3") if File.exist?("#{@music.id}.mp3")
   end
 
