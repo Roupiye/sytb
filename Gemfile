@@ -23,6 +23,7 @@ gem "stimulus_reflex", "~> 3.5.0-pre1"
 gem "octicons_helper"
 gem "youtube-dl.rb", github: "Realvestor/youtube-dl.rb", branch: "fix/update-binary"
 gem 'yt'
+gem 'simple_form'
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -1,27 +1,12 @@
-<%= form_with(model: playlist) do |form| %>
-  <% if playlist.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
+<%= simple_form_for(playlist) do |f| %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.error_notification %>
 
-      <ul>
-        <% playlist.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.input :title %>
+  <%= f.input :code %>
+  <%= f.input :thumbnail %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.text_field :code %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="text-right">
+    <%= f.button :submit %>
   </div>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_12_234324) do
+ActiveRecord::Schema.define(version: 2021_07_13_065712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_234324) do
     t.string "end"
     t.string "code"
     t.bigint "playlist_id", null: false
+    t.integer "status", default: 0
     t.index ["playlist_id"], name: "index_musics_on_playlist_id"
   end
 
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_07_12_234324) do
     t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

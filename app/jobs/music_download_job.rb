@@ -5,10 +5,17 @@ class MusicDownloadJob < ApplicationJob
 
   def perform(music)
     @music = music
-    @mp3 = download_video
+    clean_up
 
-    download_thumbnail
-    strip_video if @music.start || @music.end
+    begin
+      @mp3 = download_video
+      download_thumbnail
+      strip_video if @music.start || @music.end
+    rescue
+      @music.status = :aborted
+      @music.save
+      return
+    end
 
     @music.title = @mp3.information[:title]
     @music.artist = @mp3.information[:artist]
@@ -17,12 +24,16 @@ class MusicDownloadJob < ApplicationJob
     @music.thumbnail.attach(io: File.open("#{@music.id}_thumb"), filename: "#{@music.id}_thumb")
     @music.save
 
+    clean_up
+  end
+
+  private
+
+  def clean_up
     File.delete("#{@music.id}_thumb") if File.exist?("#{@music.id}_thumb")
     File.delete("_#{@music.id}.mp3") if File.exist?("_#{@music.id}.mp3")
     File.delete("#{@music.id}.mp3") if File.exist?("#{@music.id}.mp3")
   end
-
-  private
 
   def download_video
     YoutubeDL.download(
@@ -36,7 +47,11 @@ class MusicDownloadJob < ApplicationJob
 
   def strip_video
     `mv #{@music.id}.mp3 _#{@music.id}.mp3`
-    `ffmpeg -y -i _#{@music.id}.mp3 -ss #{@music.start.blank? ? "00:00:00" : @music.start} #{"-t #{@music.end}" unless @music.end.blank?} #{@music.id}.mp3`
+
+    start_param = "-ss #{@music.start || "00:00:00"}"
+    end_param = "-t #{@music.end}" if @music.end
+
+    `ffmpeg -y -i _#{@music.id}.mp3 #{start_param} #{end_param} #{@music.id}.mp3`
   end
 
   def download_thumbnail
