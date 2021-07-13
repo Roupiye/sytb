@@ -19,6 +19,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis"
 gem "view_component"
+gem "cable_ready", "~> 5.0.pre1"
 gem "stimulus_reflex", "~> 3.5.0-pre1"
 gem "octicons_helper"
 gem "youtube-dl.rb", github: "Realvestor/youtube-dl.rb", branch: "fix/update-binary"
@@ -44,3 +45,4 @@ group :test do
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

@@ -255,6 +255,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
+  cable_ready (~> 5.0.pre1)
   capybara (>= 3.26)
   hiredis
   hotwire-rails

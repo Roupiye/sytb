@@ -1,13 +1,15 @@
 <style>
 .pl-bg-<%= @playlist.id %> {
     min-height: 120px;
-    background-image: linear-gradient(to bottom, rgba(17, 14, 14, 0.6), rgba(17, 14, 14, 0.9)), url(<%= url_for @playlist.thumbnail %>);
+    <% if @playlist.thumbnail %>
+      background-image: linear-gradient(to bottom, rgba(17, 14, 14, 0.6), rgba(17, 14, 14, 0.9)), url(<%= url_for @playlist.thumbnail %>);
+    <% end %>
     background-size: cover;
     background-position: center center;
   }
 </style>
 
-<a class="flex p-4 rounded-md items-center pl-bg-<%= @playlist.id %>" href="<%= playlist_path @playlist %>">
+<a class="flex p-4 mb-4 rounded-md items-center pl-bg-<%= @playlist.id %>" href="<%= playlist_path @playlist %>">
   <div class="flex justify-center text-center w-full text-2xl">
     <%= @playlist.title %>
     <span class="text-beaver-400 ml-2">

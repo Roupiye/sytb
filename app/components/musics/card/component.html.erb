@@ -1,6 +1,20 @@
-<div class="p-4 cursor-pointer hover:bg-beaver-900 bg-beaver-950 border-beaver-900 border-b flex justify-start items-center"
-     data-reflex="click->PlayerReflex#play"
-     data-music="<%= @music.id %>">
-  <img src="<%= url_for @music.thumbnail %>" style="height: 40px; width: 40px; object-fit: cover" class="mr-3"/>
-  <%= @music.title %>
+<div id="<%= dom_id @music %>" class="p-4 cursor-pointer hover:bg-beaver-900 bg-beaver-950 border-beaver-900 border-b flex justify-start items-center"
+    <% if @music.done? %>
+      data-reflex="click->PlayerReflex#play"
+      data-music="<%= @music.id %>"
+    <% end %>
+>
+  <% if @music.done? %>
+    <img src="<%= url_for @music.thumbnail %>" style="height: 40px; width: 40px; object-fit: cover" class="mr-3"/>
+  <% else %>
+    <div class="bg-black flex items-center justify-center mr-3" style="height: 40px; width: 40px">
+      ?
+    </div>
+  <% end %>
+  <% if @music.done? %>
+    <%= @music.title %>
+  <% else %>
+    <%= @music.link %>
+    <span class="ml-4"><%= @music.status %></span>
+  <% end %>
 </div>

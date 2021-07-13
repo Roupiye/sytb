@@ -1,11 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<div class="flex items-center text-center justify-center text-2xl mt-4 mb-4">
+<div class="flex items-center text-center justify-center text-2xl mt-4 mb-10">
   <%= @playlist.title %>
 </div>
 
 <div class="-mx-4">
-  <% @playlist.musics.each do |music| %>
+  <% @playlist.musics.order(:id).each do |music| %>
     <%= render Musics::Card::Component.new(music: music) %>
   <% end %>
 </div>
