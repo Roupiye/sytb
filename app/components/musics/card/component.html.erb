@@ -1,5 +1,6 @@
-<div class="p-4 cursor-pointer hover:bg-beaver-700 bg-beaver-800 flex justify-center"
+<div class="p-4 cursor-pointer hover:bg-beaver-900 bg-beaver-950 border-beaver-900 border-b flex justify-start items-center"
      data-reflex="click->PlayerReflex#play"
      data-music="<%= @music.id %>">
+  <img src="<%= url_for @music.thumbnail %>" style="height: 40px; width: 40px; object-fit: cover" class="mr-3"/>
   <%= @music.title %>
 </div>

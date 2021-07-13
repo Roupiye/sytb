@@ -4,9 +4,11 @@
   <%= @playlist.title %>
 </div>
 
-<% @playlist.musics.each do |music| %>
-  <%= render Musics::Card::Component.new(music: music) %>
-<% end %>
+<div class="-mx-4">
+  <% @playlist.musics.each do |music| %>
+    <%= render Musics::Card::Component.new(music: music) %>
+  <% end %>
+</div>
 
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |

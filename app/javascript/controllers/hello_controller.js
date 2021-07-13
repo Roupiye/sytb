@@ -1,7 +1,8 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
+  static targets = [ "a" ]
   connect() {
-    this.element.textContent = "Hello World!"
+    console.log("Hello World!")
   }
 }
