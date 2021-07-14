@@ -4,9 +4,9 @@
       <div class="container max-w-4xl mx-auto px-4">
         <div class="flex justify-center">
           <div class="flex m-full items-center justify-start flex-col" data-controller="player--component">
-            <div class="flex">
+            <a href="<%= player_viewer_path %>" class="flex cursor-pointer hover:underline">
               <%= session[:player][:music].title %>
-            </div>
+            </a>
             <div class="flex justify-center">
               <div class="text-white hover:text-beaver-400 cursor-pointer flex items-center" data-reflex="click->PlayerReflex#displace" data-displacement="-1">
                 <%= octicon "arrow-left", height: 24, class: "fill-current" %>

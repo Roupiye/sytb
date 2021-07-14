@@ -6,7 +6,7 @@ class PlayerReflex < ApplicationReflex
     session[:player] ||= {}
     session[:player][:music] = music
 
-    session[:player][:playlist] = playlist.musics.select(:id).to_a if playlist
+    session[:player][:playlist] = playlist.musics.select(:id).to_a
 
     update_player
   end
@@ -41,9 +41,11 @@ class PlayerReflex < ApplicationReflex
   private
 
   def update_player
-    cable_ready
-      .outer_html(selector: "#player", html: render(Player::Component.new, layout: false))
-      .broadcast
+    cable_ready.outer_html(selector: "#player", html: render(Player::Component.new, layout: false))
+    if /\/player$/.match?(request.path)
+      cable_ready.inner_html(selector: "#player_viewer", html: render(Musics::Viewer::Component.new(music: session[:player][:music]), layout: false))
+    end
+    cable_ready.broadcast
     morph :nothing
   end
 end

@@ -1,6 +1,10 @@
 class MusicsController < ApplicationController
   before_action :set_music, only: %i[ show edit update destroy ]
 
+  def player_viewer
+    @music = session[:player][:music] if session[:player]
+  end
+
   # GET /musics or /musics.json
   def index
     @musics = Music.all

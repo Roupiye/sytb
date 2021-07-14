@@ -1,0 +1,15 @@
+<div class="mt-3 mb-5 flex justify-center">
+  <%= image_tag @music.thumbnail, width: 400 %>
+</div>
+
+<div class="text-2xl flex text-center justify-center">
+  <%= @music.title %>
+</div>
+
+<div class="text-xl text-beaver-400 flex justify-center">
+  <%= @music.artist %>
+</div>
+
+<div class="text-md text-beaver-400 flex justify-center">
+  <%= @music.duration / 60 %>:<%= Kernel.format('%02d', @music.duration % 60) %>
+</div>
