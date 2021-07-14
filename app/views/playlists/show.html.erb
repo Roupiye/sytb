@@ -4,7 +4,7 @@
 
 <div class="-mx-4">
   <% @playlist.musics.order(:id).each do |music| %>
-    <%= render Musics::Card::Component.new(music: music) %>
+    <%= render Musics::Card::Component.new(music: music, playlist: @playlist) %>
   <% end %>
 </div>
 

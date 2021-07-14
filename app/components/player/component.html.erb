@@ -1,20 +1,37 @@
-<div id="player"
-     data-turbo-permanent
-     class="bg-beaver-900 border-black border-t fixed py-2 w-full flex bottom-0">
-  <div class="container max-w-4xl mx-auto px-4">
-    <div class="flex m-full items-center justify-start flex-col">
-      <div>
-        <%= session[:player].title %>
-      </div>
-      <div>
-        <audio id="<%= session[:player].id %>"
-               controls
-               data-controller="player--component"
-               data-player--component-target="player">
-          <source src="<%= url_for session[:player].mp3 %>" type="audio/mp3">
-          Your browser does not support the audio element.
-        </audio>
+<div id="player" data-turbo-permanent>
+  <% if session[:player] && session[:player][:music] %>
+    <div class="bg-beaver-900 border-black border-t fixed py-2 w-full flex bottom-0">
+      <div class="container max-w-4xl mx-auto px-4">
+        <div class="flex justify-center">
+          <div class="flex m-full items-center justify-start flex-col" data-controller="player--component">
+            <div class="flex">
+              <%= session[:player][:music].title %>
+            </div>
+            <div class="flex justify-center">
+              <div class="text-white hover:text-beaver-400 cursor-pointer flex items-center" data-reflex="click->PlayerReflex#displace" data-displacement="-1">
+                <%= octicon "arrow-left", height: 24, class: "fill-current" %>
+              </div>
+              <audio id="<%= session[:player][:music].id %>"
+                     controls
+                     data-player--component-target="player">
+                     <source src="<%= url_for session[:player][:music].mp3 %>" type="audio/mp3">
+                       Your browser does not support the audio element.
+              </audio>
+              <div class="text-white hover:text-beaver-400 cursor-pointer flex items-center" data-reflex="click->PlayerReflex#displace" data-displacement="1">
+                <%= octicon "arrow-right", height: 24, class: "fill-current" %>
+              </div>
+            </div>
+            <div class="flex justify-center items-center text-beaver-400">
+              <div class="hover:text-blue-200 cursor-pointer mr-3" data-player--component-target="loopbtn" data-action="click->player--component#loop">
+                <%= octicon "issue-reopened", height: 20, class: "fill-current" %>
+              </div>
+              <div class="hover:text-blue-200 cursor-pointer mr-3">
+                <%= octicon "git-pull-request", height: 20, class: "fill-current" %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  <div>
+  <% end %>
 </div>

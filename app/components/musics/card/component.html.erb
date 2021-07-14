@@ -1,34 +1,38 @@
-<div id="<%= dom_id @music %>" class="p-4 cursor-pointer hover:bg-beaver-900 bg-beaver-950 border-beaver-900 border-b flex justify-start items-center"
+<div id="<%= dom_id @music %>">
+  <div class="p-4 cursor-pointer hover:bg-beaver-900 bg-beaver-950 border-beaver-900 border-b flex justify-start items-center"
+      <% if @music.done? %>
+        data-reflex="click->PlayerReflex#play"
+      <% else %>
+        data-reflex="click->PlayerReflex#download_music"
+      <% end %>
+        data-music="<%= @music.id %>"
+      <% if @playlist %>
+        data-playlist="<%= @playlist.id %>"
+      <% end %>
+  >
     <% if @music.done? %>
-      data-reflex="click->PlayerReflex#play"
-      data-music="<%= @music.id %>"
+      <img src="<%= url_for @music.thumbnail %>" style="height: 40px; width: 40px; object-fit: cover" class="mr-3"/>
     <% else %>
-      data-reflex="click->PlayerReflex#download_music"
-      data-music="<%= @music.id %>"
+      <div class="bg-black flex items-center justify-center mr-3" style="height: 40px; width: 40px">
+        ?
+      </div>
     <% end %>
->
-  <% if @music.done? %>
-    <img src="<%= url_for @music.thumbnail %>" style="height: 40px; width: 40px; object-fit: cover" class="mr-3"/>
-  <% else %>
-    <div class="bg-black flex items-center justify-center mr-3" style="height: 40px; width: 40px">
-      ?
+    <% if @music.done? %>
+      <%= @music.title %>
+    <% else %>
+      <%= @music.link %>
+      <span class="ml-4"><%= @music.status %></span>
+    <% end %>
+  </div>
+  <% if @music.aborted? %>
+    <br>
+    <pre class="overflow-x-auto">
+  <%= @music.error %>
+    </pre>
+    <div class="text-red-400 hover:text-red-500 cursor-pointer"
+        data-reflex="click->PlayerReflex#delete_music"
+        data-music="<%= @music.id %>">
+      delete
     </div>
   <% end %>
-  <% if @music.done? %>
-    <%= @music.title %>
-  <% else %>
-    <%= @music.link %>
-    <span class="ml-4"><%= @music.status %></span>
-  <% end %>
 </div>
-<% if @music.aborted? %>
-  <br>
-  <pre class="overflow-x-auto">
-<%= @music.error %>
-  </pre>
-  <div class="text-red-400 hover:text-red-500 cursor-pointer"
-       data-reflex="click->PlayerReflex#delete_music"
-       data-music="<%= @music.id %>">
-    delete
-  </div>
-<% end %>
