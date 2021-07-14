@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_065712) do
+ActiveRecord::Schema.define(version: 2021_07_14_002926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,17 @@ ActiveRecord::Schema.define(version: 2021_07_13_065712) do
     t.string "start"
     t.string "end"
     t.string "code"
-    t.bigint "playlist_id", null: false
     t.integer "status", default: 0
-    t.index ["playlist_id"], name: "index_musics_on_playlist_id"
+    t.string "error"
+  end
+
+  create_table "playlist_musics", force: :cascade do |t|
+    t.bigint "playlist_id", null: false
+    t.bigint "music_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["music_id"], name: "index_playlist_musics_on_music_id"
+    t.index ["playlist_id"], name: "index_playlist_musics_on_playlist_id"
   end
 
   create_table "playlists", force: :cascade do |t|
@@ -68,5 +76,6 @@ ActiveRecord::Schema.define(version: 2021_07_13_065712) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "musics", "playlists"
+  add_foreign_key "playlist_musics", "musics"
+  add_foreign_key "playlist_musics", "playlists"
 end

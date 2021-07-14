@@ -15,7 +15,8 @@ class MusicDownloadJob < ApplicationJob
       download_thumbnail
       update_status :processing
       strip_video if @music.start || @music.end
-    rescue
+    rescue => err
+      @music.error = err.message
       update_status :aborted
       return
     end

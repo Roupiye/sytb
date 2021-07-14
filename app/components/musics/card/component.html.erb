@@ -2,6 +2,9 @@
     <% if @music.done? %>
       data-reflex="click->PlayerReflex#play"
       data-music="<%= @music.id %>"
+    <% else %>
+      data-reflex="click->PlayerReflex#download_music"
+      data-music="<%= @music.id %>"
     <% end %>
 >
   <% if @music.done? %>
@@ -18,3 +21,14 @@
     <span class="ml-4"><%= @music.status %></span>
   <% end %>
 </div>
+<% if @music.aborted? %>
+  <br>
+  <pre class="overflow-x-auto">
+<%= @music.error %>
+  </pre>
+  <div class="text-red-400 hover:text-red-500 cursor-pointer"
+       data-reflex="click->PlayerReflex#delete_music"
+       data-music="<%= @music.id %>">
+    delete
+  </div>
+<% end %>
