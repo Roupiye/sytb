@@ -1,0 +1,7 @@
+<div id="music_list_controller">
+  <%= render Musics::List::Controller::Component.new(playlist: @playlist, offset: @offset) %>
+</div>
+
+<div id="music_list_content">
+  <%= render Musics::List::Content::Component.new(musics: @musics, playlist: @playlist) %>
+</div>

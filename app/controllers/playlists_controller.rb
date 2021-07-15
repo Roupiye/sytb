@@ -8,6 +8,7 @@ class PlaylistsController < ApplicationController
 
   # GET /playlists/1 or /playlists/1.json
   def show
+    @musics = @playlist.musics.order(:id).with_attached_thumbnail.strict_loading.first(20)
     # @playlist = Playlist.eager_load(musics: {thumbnail_attachment: :blob}).find(params[:id])
   end
 

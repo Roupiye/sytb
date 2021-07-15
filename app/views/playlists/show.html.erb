@@ -3,11 +3,5 @@
 </div>
 
 <div class="-mx-4">
-  <% @playlist.musics.order(:id).each do |music| %>
-    <%= render Musics::Card::Component.new(music: music, playlist: @playlist) %>
-  <% end %>
+  <%= render Musics::List::Component.new(musics: @musics, playlist: @playlist) %>
 </div>
-
-
-<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>

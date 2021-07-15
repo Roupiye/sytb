@@ -1,0 +1,3 @@
+<% @musics.each do |music| %>
+  <%= render Musics::Card::Component.new(music: music, playlist: @playlist) %>
+<% end %>
