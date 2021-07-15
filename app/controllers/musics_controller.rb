@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class MusicsController < ApplicationController
-  before_action :set_music, only: %i[ show edit update destroy ]
+  before_action :set_music, only: %i[show edit update destroy]
 
   def player_viewer
     @music = session[:player][:music] if session[:player]
@@ -61,13 +63,14 @@ class MusicsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_music
-      @music = Music.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def music_params
-      params.require(:music).permit(:title, :link, :start, :end, :thumbnail, :duration, :artist)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_music
+    @music = Music.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def music_params
+    params.require(:music).permit(:title, :link, :start, :end, :thumbnail, :duration, :artist)
+  end
 end

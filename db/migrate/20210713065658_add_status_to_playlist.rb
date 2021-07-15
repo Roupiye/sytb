@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddStatusToPlaylist < ActiveRecord::Migration[6.1]
   def change
     add_column :playlists, :status, :integer, default: 0

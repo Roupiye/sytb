@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Playlist < ApplicationRecord
   enum status: [:waiting, :done, :processing, :aborted]
 

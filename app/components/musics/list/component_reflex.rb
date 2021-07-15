@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Musics::List::ComponentReflex < ApplicationReflex
   def load
     offset = element.dataset["offset"].to_i

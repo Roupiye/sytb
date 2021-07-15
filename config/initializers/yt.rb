@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Yt.configuration.api_key = Rails.application.credentials[:yt_key]
 
 Yt.configure do |config|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class PlaylistsControllerTest < ActionDispatch::IntegrationTest
@@ -16,8 +18,8 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create playlist" do
-    assert_difference('Playlist.count') do
-      post playlists_url, params: { playlist: { code: @playlist.code, title: @playlist.title } }
+    assert_difference("Playlist.count") do
+      post playlists_url, params: {playlist: {code: @playlist.code, title: @playlist.title}}
     end
 
     assert_redirected_to playlist_url(Playlist.last)
@@ -34,12 +36,12 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update playlist" do
-    patch playlist_url(@playlist), params: { playlist: { code: @playlist.code, title: @playlist.title } }
+    patch playlist_url(@playlist), params: {playlist: {code: @playlist.code, title: @playlist.title}}
     assert_redirected_to playlist_url(@playlist)
   end
 
   test "should destroy playlist" do
-    assert_difference('Playlist.count', -1) do
+    assert_difference("Playlist.count", -1) do
       delete playlist_url(@playlist)
     end
 

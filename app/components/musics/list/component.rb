@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Musics::List::Component < ApplicationComponent
   def initialize(musics:, playlist:, offset: musics.size)
     @musics = musics

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Music < ApplicationRecord
   enum status: [:waiting, :done, :processing, :downloading, :aborted]
   after_commit :set_music, on: [:create]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlayerReflex < ApplicationReflex
   def play
     music = Music.find(element.dataset["music"])
@@ -30,12 +32,17 @@ class PlayerReflex < ApplicationReflex
     music = Music.find(element.dataset["music"])
 
     music.set_music
+    morph :nothing
   end
 
   def delete_music
     music = Music.find(element.dataset["music"])
-
     music.destroy
+
+    cable_ready
+      .remove(selector: dom_id(music))
+      .broadcast
+    morph :nothing
   end
 
   private

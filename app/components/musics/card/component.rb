@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Musics::Card::Component < ApplicationComponent
   def initialize(music:, playlist: nil)
     @music = music
